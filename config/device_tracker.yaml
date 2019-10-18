@@ -1,0 +1,4 @@
+# XIAOMI Router
+- platform: xiaomi
+  host: !secret xiaomi_router_ip
+  password: !secret xiaomi_router_pass

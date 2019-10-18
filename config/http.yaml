@@ -1,0 +1,3 @@
+base_url: !secret ssl_ip_address
+ssl_certificate: !secret ssl_cert
+ssl_key: !secret ssl_key

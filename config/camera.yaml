@@ -1,0 +1,8 @@
+# Wyze Camera
+- platform: ffmpeg #generic
+  name: "Home Wyze Camera"
+  input: !secret wyze_cam_pan_rtsp_url
+#- platform: generic
+#  name: Home Wyze Camera
+#  still_image_url: "/config/last-open-cam.jpg"
+#  stream_source: !secret wyze_cam_pan_rtsp_url

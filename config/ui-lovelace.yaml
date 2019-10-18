@@ -1,0 +1,110 @@
+title: Home
+background: center / cover no-repeat url("/local/background.jpg") fixed
+resources:
+  - url: /local/mini-media-player-bundle.js?v=1.3.0
+    type: module
+views:
+  - badges:
+      - person.mari
+      - person.diego
+      - sun.sun
+      - binary_sensor.wyzesense_1
+      - binary_sensor.wyzesense_2
+      - binary_sensor.workday_sensor
+      - binary_sensor.pico_y_placa
+    cards:
+      - entity: sensor.date_time
+        type: sensor
+      - entity: weather.home
+        type: weather-forecast
+      - entity: media_player.living_room_tv
+        type: media-control
+      - entity: media_player.master_bedroom_tv
+        type: media-control
+      - entity: media_player.soundtouch_living_room
+        type: media-control
+      - entity: media_player.bravia_tv
+        type: media-control
+      - entity: media_player.soundtouch_living_room
+        type: custom:mini-media-player
+      - columns: 2
+        entities:
+          - entity: binary_sensor.wyzesense_
+            icon: 'mdi:run-fast'
+            name: Kitchen movement
+          - entity: binary_sensor.wyzesense_
+            icon: 'mdi:door'
+            name: Main door
+        title: Home Wyze Sensors
+        type: glance
+      - entity: media_player.mari_s_echo_dot
+        type: media-control
+    path: default_view
+    theme: default
+    title: Home
+  - badges: []
+    cards:
+      - entity: media_player.living_room_tv
+        type: media-control
+      - entity: media_player.master_bedroom_tv
+        type: media-control
+    panel: false
+    path: chromecast
+    title: Chromecast
+  - badges: []
+    cards:
+      - entity: media_player.living_room_tv
+        type: media-control
+      - entity: media_player.soundtouch_living_room
+        type: media-control
+      - entity: media_player.bravia_tv
+        type: media-control
+      - entity: media_player.mari_s_echo_dot
+        type: media-control
+      - camera_image: camera.home_wyze_camera
+        entities: []
+        title: Wyze Home Camera
+        type: picture-glance
+    path: livingroom
+    title: Livingroom
+  - badges: []
+    cards:
+      - entity: media_player.master_bedroom_tv
+        type: media-control
+    path: master-bedroom
+    title: Master Bedroom
+  - badges: []
+    cards:
+      - camera_image: camera.home_wyze_camera
+        entities:
+          - binary_sensor.wyzesense_
+          - binary_sensor.wyzesense_
+        title: Wyze Home Cam
+        type: picture-glance
+    path: cameras
+    title: Cameras
+  - badges: []
+    cards:
+      - columns: 2
+        entities:
+          - entity: binary_sensor.wyzesense_
+            icon: 'mdi:run-fast'
+            name: Kitchen movement
+          - entity: binary_sensor.wyzesense_
+            icon: 'mdi:door'
+            name: Main door
+        title: Home Wyze Sensors
+        type: glance
+    path: kitchen
+    title: Sensors
+  - badges: []
+    cards:
+      - cards:
+          - entities:
+              - entity: device_tracker.xxxxxxxxx
+              - entity: device_tracker.xxxxxxx
+            type: entities
+        type: vertical-stack
+    path: devices
+    theme: default
+    title: Devices

@@ -1,0 +1,15 @@
+version: '3'
+services:
+  homeassistant:
+    privileged: true
+    container_name: home-assistant
+    image: homeassistant/home-assistant:latest
+    volumes:
+      - /home/diebell/home-assistant-config/config:/config
+    devices:
+      - /dev/hidraw2:/dev/hidraw2
+    environment:
+      - TZ=America/Bogota
+    restart: always
+    network_mode: host
+

@@ -1,0 +1,3 @@
+del_kitchen_movement_video: 'rm -f /config/media/last-kitchen-motion.mp4'
+del_last_main_door_open: 'rm -f /config/media/main-door-open.mp4'
+del_last_main_door_close: 'rm -f /config/media/main-door-closes.mp4'

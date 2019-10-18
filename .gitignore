@@ -1,0 +1,10 @@
+config/media/
+config/tts
+config/home-assistant_v2.db
+config/.pip_progress
+config/home-assistant.log
+config/home-assistant_v2.db*
+config/.storage/core.restore_state
+__pycache__/
+/__pycache__
+/__pycache__/

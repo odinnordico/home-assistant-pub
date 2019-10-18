@@ -1,0 +1,145 @@
+- id: kitchen-movement-detection
+  alias: Kitchen movement detection
+  trigger:
+  - entity_id: binary_sensor.wyzesense_777f2448
+    for: 00:01:10
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.94_65_2d_6d_34_9c
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.94_65_2d_c5_dc_9e
+      state: not_home
+  action:
+  - data:
+      duration: 25
+      entity_id: camera.home_wyze_camera
+      filename: /config/media/last-kitchen-motion.mp4
+      lookback: 0
+    service: camera.record
+  - data:
+      message: Motion detected in the Kitchen at {{ states.sensor.date.state }}, *{{
+        states.sensor.time.state }}*
+      title: '*Kitchen Motion DETECTED*'
+    service: notify.diego_mary_home
+  - delay: 00:02:00
+  - data:
+      data:
+        video:
+          caption: Last Kitchen Motion
+          file: /config/media/last-kitchen-motion.mp4
+      message: Kitchen Motion Video
+      title: Kitchen Motion Detected
+    service: notify.diego_mary_home
+  - delay: 00:05:00
+  - data: {}
+    service: shell_command.del_kitchen_movement_video
+- id: main-door-open
+  alias: Main door opened
+  trigger:
+  - entity_id: binary_sensor.wyzesense_77843ef5
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.94_65_2d_6d_34_9c
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.94_65_2d_c5_dc_9e
+      state: not_home
+  action:
+  - data:
+      duration: 25
+      entity_id: camera.home_wyze_camera
+      filename: /config/media/main-door-open.mp4
+      lookback: 0
+    service: camera.record
+  - data:
+      message: Main door opened at {{ states.sensor.date.state }}, *{{ states.sensor.time.state
+        }}*
+      title: '*Main Door OPENED*'
+    service: notify.diego_mary_home
+  - delay: 00:02:00
+  - data:
+      data:
+        video:
+          caption: Main Door Open
+          file: /config/media/main-door-open.mp4
+      message: Main Door Video
+      title: Main Door Open
+    service: notify.diego_mary_home
+  - delay: 00:05:00
+  - data: {}
+    service: shell_command.del_last_main_door_open
+- id: main-door-close
+  alias: Main door closed
+  trigger:
+  - entity_id: binary_sensor.wyzesense_77843ef5
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: device_tracker.94_65_2d_6d_34_9c
+      state: not_home
+    - condition: state
+      entity_id: device_tracker.94_65_2d_c5_dc_9e
+      state: not_home
+  action:
+  - data:
+      message: Main door closed at {{ states.sensor.date.state }}, *{{ states.sensor.time.state
+        }}*
+      title: '*Main Door CLOSED*'
+    service: notify.diego_mary_home
+- id: good_mornig
+  alias: Good Mornig
+  trigger:
+  - at: 07:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.mari_s_echo_dot
+      media_content_id: Alexa.GoodMorning.Play
+      media_content_type: sequence
+    service: media_player.play_media
+  - delay: 00:00:15
+  - data_template:
+      data:
+        type: tts
+      message: Son las {{ states.sensor.time.state }} del {{ states.sensor.date.state
+        }}
+    service: notify.alexa_media_mari_s_echo_dot
+  - delay: 00:00:05
+  - data:
+      entity_id: media_player.mari_s_echo_dot
+      media_content_id: Alexa.Weather.Play
+      media_content_type: sequence
+    service: media_player.play_media
+  - delay: 00:00:10
+  - data_template:
+      data:
+        type: tts
+      message: 'Para hoy el pico y placa es: {% if is_state(''binary_sensor.pico_y_placa'',''on'')
+        %} Con restriccion {% else %} Sin Restriccion {% endif %}'
+    service: notify.alexa_media_mari_s_echo_dot
+- id: set_theme_at_startup
+  alias: Set theme at startup
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      name: Dark - Green
+    service: frontend.set_theme

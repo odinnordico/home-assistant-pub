@@ -1,0 +1,14 @@
+device_tracker.a_mac:
+  friendly_name: Cellphone Mari 1+5
+device_tracker.some_name:
+  friendly_name: Cellphone Diego 1+5T
+binary_sensor.wyzesense_yy:
+  friendly_name: Kitchen Motion Sensor
+media_player.soundtouch_living_room:
+  friendly_name: Bose Home Theater
+device_tracker.bose_home_teather:
+  friendly_name: BOSE-Home-Theater
+device_tracker.braviatv:
+  friendly_name: Bravia tv
+binary_sensor.wyzesense_xx:
+  friendly_name: Main Door Sensor

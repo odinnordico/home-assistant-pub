@@ -1,0 +1,17 @@
+# Livingroom SONY Bravia Androit TV
+#- platform: braviatv
+#  host: !secret sony_bravia_tv_ip
+#  name: Bravia TV
+- platform: braviatv_psk
+  name: Bravia TV
+  host: !secret sony_bravia_tv_ip
+  psk: !secret sony_bravia_tv_psk
+  mac: !secret sony_bravia_tv_mac
+  amp: True
+  android: True
+#Livingroom BOSE cinemate 130
+- platform: soundtouch
+  host: !secret bose_cinemate_soundtouch_ip
+  port: !secret bose_cinemate_soundtouch_port
+  name: Soundtouch Living Room
+

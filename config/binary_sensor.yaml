@@ -1,0 +1,22 @@
+# Wyze Sensor HUB connected direct throught USB 
+- platform: wyzesense
+  device: "/dev/hidraw2"
+# Sensor for work days in Colombia CO
+- platform: workday
+  country: 'CO'
+- platform: template
+  sensors:
+    pico_y_placa:
+      friendly_name: "Pico & Placa"
+      value_template: >-
+        {{
+          is_state('binary_sensor.workday_sensor','on')
+          and (states('sensor.date').split('-')[2] | int) % 2 != 0
+        }}
+      icon_template: >-
+        {% if is_state('binary_sensor.workday_sensor','on')
+           and (states('sensor.date').split('-')[2] | int) % 2 != 0  %}
+          mdi:car-off
+        {% else %}
+          mdi:car
+        {% endif %}

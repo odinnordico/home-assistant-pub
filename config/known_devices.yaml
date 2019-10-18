@@ -1,0 +1,9 @@
+
+braviatv:
+  hide_if_away: false
+  icon: mdi:television
+  mac: xx:xx:xx:xx:xx:xx
+  name: braviatv
+  picture:
+  track: false
+

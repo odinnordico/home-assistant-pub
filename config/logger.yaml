@@ -1,0 +1,9 @@
+default: info
+#logs:
+#  custom_components.wyzesense: info
+#  wyzesense.gateway: info
+#  homeassistant.loader: warn
+#  homeassistant.setup: warn
+#  homeassistant.components: warn
+#  homeassistant.components.xiaomi.device_tracker: warn
+#  custom_components.wyzesense.wyzesense_custom: warn
